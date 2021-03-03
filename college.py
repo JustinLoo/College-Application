@@ -5,11 +5,28 @@ import mysql.connector as mysql
 db = mysql.connect(host = "localhost", user = "root", password = "", database = "college")
 #connect to mySQL database. The password is left blank because root has no default password set at the moment
 commandHandler = db.cursor(buffered = True)
-#this makes it so that it will nto lag
+#this makes it so that it will execute any query and SQL code
 
 #if it is admin:
 def admin():
-    print("Success!Welcome admin!")
+    print("Admin Menu")
+    print("1. Register new Student")
+    print("2. Register new Teacher")
+    print("3. Delete exsisting Student")
+    print("4. Delete exsisting Teacher")
+    print("5. Logout")
+
+    userOption = input(str("Option: "))
+    if userOption == "1":
+        print("Register a new Student!")
+        newStudent = input(str("set Student name: "))
+        studentPassword = input(str("set Student password: "))
+        queryValues = (newStudent, studentPassword)
+        commandHandler.execute("INSERT INTO users (username, password, privilege) VALUES (%s,%s, 'student')",queryValues)
+        db.commit()
+        print(username + "has been registered as a student")
+        print("_________________________________________________________")
+    
 
 
 #checks if credentials are corerect
