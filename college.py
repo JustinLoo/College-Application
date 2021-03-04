@@ -22,9 +22,9 @@ def admin():
         newStudent = input(str("set Student name: "))
         studentPassword = input(str("set Student password: "))
         queryValues = (newStudent, studentPassword)
-        commandHandler.execute("INSERT INTO users (username, password, privilege) VALUES (%s,%s, 'student')",queryValues)
+        commandHandler.execute("INSERT INTO users (username,password,prvilege) VALUES (%s,%s, 'student')",queryValues)
         db.commit()
-        print(username + "has been registered as a student")
+        print(newStudent + "has been registered as a student")
         print("_________________________________________________________")
     
 
@@ -35,7 +35,7 @@ def authAdmin():
     print("Admin Login")
     print("")
     username = input(str("Username: "))
-    passaword = input(str("Password: "))
+    password = input(str("Password: "))
     if username == "admin":
         if password == "password":
             admin()
